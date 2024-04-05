@@ -1,0 +1,28 @@
+{
+  "name": "typescript-mongoose-migrations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.mjs",
+  "scripts": {
+    "build": "rm -rf dist && tsc --noEmit && tsup index.ts --format esm --minify",
+    "watch:tsc": "tsx watch src/index.ts",
+    "prestart": "npm run build",
+    "start": "node ./dist/index.mjs",
+    "mongo:migration:create": "./node_modules/.bin/migrate --migrations-dir ./migrations --es6 true create",
+    "mongo:migration:run": "tsx ./node_modules/migrate-mongoose-typescript/dist/cli --autosync true --es6 true --migrations-dir ./migrations up"
+  },
+  "keywords": [],
+  "author": "Orim Dominic Adah",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "migrate-mongoose-typescript": "^3.3.4",
+    "mongoose": "^8.3.0",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.4",
+    "typescript": "^5.4.4"
+  }
+}
